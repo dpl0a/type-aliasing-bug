@@ -39,7 +39,7 @@ enum FooError {
 
 #[cfg(test)]
 mod tests {
-    use crate::{FooError, Whatever};
+    use crate::{FooError, Whatever, BarStruct, FooStruct};
     use foo::TestBar;
 
     #[test]
@@ -53,6 +53,7 @@ mod tests {
         }
 
         let foo = TestBar::new();
+        //let foo = BarStruct::<FooStruct>::new();
         assert_eq!(A::bar(foo), Err(FooError::One))
     }
 }
