@@ -39,7 +39,8 @@ enum FooError {
 
 #[cfg(test)]
 mod tests {
-    use crate::{FooError, Whatever, BarStruct, FooStruct};
+    use crate::{FooError, Whatever};
+    //use crate::{BarStruct, FooStruct};
     use foo::TestBar;
 
     #[test]
