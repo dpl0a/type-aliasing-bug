@@ -54,7 +54,7 @@ mod tests {
         }
 
         let foo = TestBar::new();
-        //let foo = BarStruct::<FooStruct>::new();
+        //let foo = BarStruct::<FooStruct>::new();  // This works!
         assert_eq!(A::bar(foo), Err(FooError::One))
     }
 }
