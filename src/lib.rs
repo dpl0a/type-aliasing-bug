@@ -2,14 +2,14 @@ pub trait Cache {
     fn new() -> Self;
 }
 
-pub struct Program<C: Cache> {
-    t: C
+pub struct BarStruct<C: Cache> {
+    t: C,
 }
 
-pub struct CBNCache {}
-impl Cache for CBNCache {
+pub struct FooStruct {}
+impl Cache for FooStruct {
     fn new() -> Self {
-        CBNCache {}
+        FooStruct {}
     }
 }
 
@@ -17,31 +17,30 @@ trait Whatever {
     fn some_function(&self) -> Result<usize, FooError>;
 }
 
-impl<C: Cache> Program<C> {
+impl<C: Cache> BarStruct<C> {
     pub fn new() -> Self {
-        Program { t: C::new() }
+        BarStruct { t: C::new() }
     }
     pub fn const1(&self) -> usize {
         1
     }
 }
 
-impl<C: Cache> Whatever for Program<C> {
+impl<C: Cache> Whatever for BarStruct<C> {
     fn some_function(&self) -> Result<usize, FooError> {
-            Err(FooError::One)
+        Err(FooError::One)
     }
 }
 
 #[derive(Debug, PartialEq, Eq)]
 enum FooError {
     One,
-    Two { b: bool }
 }
 
 #[cfg(test)]
 mod tests {
-    use foo::TestProgram;
     use crate::{FooError, Whatever};
+    use foo::TestBar;
 
     #[test]
     fn footest() {
@@ -53,7 +52,7 @@ mod tests {
             }
         }
 
-        let foo = TestProgram::new();
+        let foo = TestBar::new();
         assert_eq!(A::bar(foo), Err(FooError::One))
     }
 }

@@ -1,4 +1,4 @@
-use type_aliasing_bug::{CBNCache, Program};
+use type_aliasing_bug::{BarStruct, FooStruct};
 
-pub type EC = CBNCache;
-pub type TestProgram = Program<EC>;
+pub type C = FooStruct;
+pub type TestBar = BarStruct<C>;
